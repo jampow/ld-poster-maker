@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Capitana Sans Serif Font';
+  font-style: light;
+  font-weight: 300;
+  src: url(/fonts/capitana-light.otf);
+}
+
+@font-face {
+  font-family: 'Capitana Sans Serif Font';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/capitana-regular.otf);
+}
+
+@font-face {
+  font-family: 'Capitana Sans Serif Font';
+  font-style: medium;
+  font-weight: 500;
+  src: url(/fonts/capitana-medium.otf);
+}
+
+@font-face {
+  font-family: 'Capitana Sans Serif Font';
+  font-style: semi-bold;
+  font-weight: 550;
+  src: url(/fonts/capitana-semibold.otf);
+}
+
+@font-face {
+  font-family: 'Capitana Sans Serif Font';
+  font-style: bold;
+  font-weight: 600;
+  src: url(/fonts/capitana-bold.otf);
+}
+
+@font-face {
+  font-family: 'Capitana Sans Serif Font';
+  font-style: black;
+  font-weight: 800;
+  src: url(/fonts/capitana-black.otf);
+}
