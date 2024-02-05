@@ -17,16 +17,26 @@ const loadImage = (src: string) => {
   })
 }
 
+const nextWednesday = () => {
+  const date = new Date();
+  const day = date.getDay();
+  const daysUntilWednesday = 3 - day;
+  date.setDate(date.getDate() + daysUntilWednesday);
+  date.setHours(11);
+  date.setMinutes(0);
+  return date.toISOString();
+}
+
 const slicedDatetime = (datetime: string) => {
   const months = [
     'JAN', 'FEV', 'MAR', 'ABR',
     'MAI', 'JUN', 'JUL', 'AGO',
     'SET', 'OUT', 'NOV', 'DEZ'
   ];
-  const date = new Date(datetime);
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = months[date.getMonth()];
-  const time = date.toLocaleTimeString();
+  const date = datetime === '' ? nextWednesday() : datetime;
+  const [_year, monthNumber, day, hour, minute] = date.split(/[-T:]/);
+  const month = months[parseInt(monthNumber) - 1];
+  const time = `${hour}:${minute}`;
   return { day, month, time };
 }
 
@@ -56,18 +66,20 @@ const drawCalendarIcon = (ctx: CanvasRenderingContext2D) => () => {
 }
 
 const writeDay = (ctx: CanvasRenderingContext2D, day: string) => () => {
-  ctx.font = '500 150px "Capitana Sans Serif Font"';
+  ctx.font = '500 100px "Capitana Sans Serif Font"';
+  if (isNaN(parseInt(day))) return;
   ctx.fillText(day, 560, 1290);
 }
 
 const writeMonth = (ctx: CanvasRenderingContext2D, month: string) => () => {
-  ctx.font = '150px "Capitana Sans Serif Font"';
-  ctx.fillText(month, 860, 1290);
+  ctx.font = '100px "Capitana Sans Serif Font"';
+  if (month === undefined) return;
+  ctx.fillText(month, 720, 1290);
 }
 
 const writeTime = (ctx: CanvasRenderingContext2D, time: string) => () => {
-  ctx.font = '500 150px "Capitana Sans Serif Font"';
-  ctx.fillText(time, 1100, 1290);
+  ctx.font = '500 100px "Capitana Sans Serif Font"';
+  ctx.fillText(time, 560, 1420);
 }
 
 export default ({ title, datetime }: CanvasProps) => {
